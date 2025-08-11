@@ -286,8 +286,8 @@ def main():
 
     print("Generated Caption:\n", caption)
 
-    # Show image locally
-    final_img.show()
+    final_img.save("output.png")
+    print("Image saved as output.png")
 
     if all([API_KEY, API_SECRET, ACCESS_TOKEN, ACCESS_SECRET]):
         try:
@@ -304,6 +304,8 @@ def main():
             print("Posted to Twitter!")
         except Exception as e:
             print("Failed to post to Twitter:", e)
+    else:
+        print("Twitter API keys are not set. Skipping Twitter post.")
 
 if __name__ == "__main__":
     main()
