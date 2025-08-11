@@ -1,6 +1,6 @@
 # AbsurdBot 🤖✨
 
-![AbsurdBot]()
+![AbsurdBot](https://raw.githubusercontent.com/Ementhia/AbsurdBot/main/AbsurdBot.png)
 
 **AbsurdBot** is a chaotic Twitter bot that automatically posts surreal, quirky images combined with random phrases and emoji, creating a stream of unpredictable, entertaining content twice daily.
 
@@ -60,5 +60,6 @@
    Alternatively, set up a GitHub Actions workflow to run the bot automatically every 12 hours.
 
 ## License
+
 
 MIT License © Ementhia
