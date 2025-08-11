@@ -283,10 +283,27 @@ def main():
         final_img = overlay_text(final_img, quote)
 
     caption = make_caption(quote if random.random() < 0.9 else " ")
+
     print("Generated Caption:\n", caption)
 
     # Show image locally
     final_img.show()
+
+    if all([API_KEY, API_SECRET, ACCESS_TOKEN, ACCESS_SECRET]):
+        try:
+            import tweepy
+            from io import BytesIO
+            auth = tweepy.OAuth1UserHandler(API_KEY, API_SECRET, ACCESS_TOKEN, ACCESS_SECRET)
+            api = tweepy.API(auth, wait_on_rate_limit=True)
+            image_bytes = BytesIO()
+            final_img.save(image_bytes, format='JPEG')
+            image_bytes.seek(0)
+            fn = "temp.jpg"
+            media = api.media_upload(filename=fn, file=image_bytes)
+            api.update_status(status=caption, media_ids=[media.media_id_string])
+            print("Posted to Twitter!")
+        except Exception as e:
+            print("Failed to post to Twitter:", e)
 
 if __name__ == "__main__":
     main()
